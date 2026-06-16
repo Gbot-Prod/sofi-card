@@ -1,34 +1,74 @@
+import { useState } from 'react'
 import './Pricing.css'
 
 const priceOptions = [
-  { name: 'Budget Friendly', price: '$2,700', quantity: '25 edited photos', time: '1-2 hour shoots', description: 'Ideal for those on a tight budget who still want high-quality photos.' },
-  { name: 'Starter', price: '$5,000', quantity: '30 edited photos', time: '2-3 hour shoots', description: 'Perfect for individuals looking for a balanced package.' },
-  { name: 'Standard', price: '$8,000', quantity: '80 edited photos', time: '3-4 hour shoots', description: 'Great for larger projects or those who need a substantial number of edited photos.' },
-  { name: 'Full Creative Production', price: '$15,000', quantity: '100+ edited photos', time: 'half day shoots', description: 'Comprehensive solution for extensive creative needs. inclusive of moodboard/styling' },
+  { name: 'Budget Friendly', price: 'PHP 2,700', quantity: '25 edited photos', time: '1 hour shoot', description: 'A simple, easy session for quick portraits or a focused concept.' },
+  { name: 'Starter', price: 'PHP 5,000', quantity: '40 edited photos', time: '2 hour shoot', description: 'A balanced package for personal branding, couples, or small lifestyle sets.' },
+  { name: 'Standard', price: 'PHP 8,000', quantity: '80 edited photos', time: '4 hour shoot', description: 'More room for outfit changes, locations, and a fuller story from the day.' },
+  { name: 'Full Creative Production', price: 'PHP 15,000', quantity: '100+ edited photos', time: 'Half-day shoot', description: 'A complete creative session with moodboard planning and styling direction.' },
 ]
 
 const additionalServices = [
-  { name: 'Short Videos (30-60 seconds)', price: '$1,500' },
-  { name: 'duo (2 people)', price: '₱500' },
-  { name: 'Small Group (3-5 people)', price: '₱1,500-₱2,500' }
+  { name: 'Short videos (30-60 seconds)', price: 'PHP 1,500' },
+  { name: 'Duo session (2 people)', price: 'PHP 500' },
+  { name: 'Small group (3-5 people)', price: 'PHP 1,500-2,500' },
 ]
 
 function PricingCard() {
+  const [selectedIndex, setSelectedIndex] = useState(1)
+  const selectedOption = priceOptions[selectedIndex]
+
   return (
-    <div className="pricing-card flex flex-col p-8">
-      <div className="pricing-header flex items-center justify-center mb-4">
-        <h1 className="header-title">Pricing</h1>
+    <section className="pricing-card">
+      <div className="pricing-header">
+        <p className="eyebrow">Packages</p>
+        <h2 className="header-title">Pricing</h2>
       </div>
-      <div className="pricing-options flex flex-col gap-4">
-        <div className="options flex items-center justify-center gap-4">
-          <button className="priceButton">Budget Friendly</button>
-          <button className="priceButton">Starter</button>
-          <button className="priceButton">Standard</button>
-          <button className="priceButton">Full Creative Production</button>
+
+      <div className="options" aria-label="Choose a package">
+        {priceOptions.map((option, index) => (
+          <button
+            className={`price-button ${selectedIndex === index ? 'active' : ''}`}
+            key={option.name}
+            onClick={() => setSelectedIndex(index)}
+            type="button"
+          >
+            {option.name}
+          </button>
+        ))}
+      </div>
+
+      <article className="selected-package">
+        <div>
+          <p className="package-name">{selectedOption.name}</p>
+          <p className="package-price">{selectedOption.price}</p>
         </div>
+        <p className="package-description">{selectedOption.description}</p>
+        <dl className="package-details">
+          <div>
+            <dt>Includes</dt>
+            <dd>{selectedOption.quantity}</dd>
+          </div>
+          <div>
+            <dt>Session</dt>
+            <dd>{selectedOption.time}</dd>
+          </div>
+        </dl>
+      </article>
+
+      <div className="add-ons">
+        <h3>Add-ons</h3>
+        <ul>
+          {additionalServices.map((service) => (
+            <li key={service.name}>
+              <span>{service.name}</span>
+              <strong>{service.price}</strong>
+            </li>
+          ))}
+        </ul>
       </div>
-    </div>
-  );
+    </section>
+  )
 }
 
-export default PricingCard;
+export default PricingCard
