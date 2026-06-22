@@ -9,7 +9,7 @@ const priceOptions = [
 ]
 
 const additionalServices = [
-  { name: 'Short videos (30-60 seconds)', price: 'PHP 1,500' },
+  { name: 'Short videos (Fully Edited / 30-60 seconds)', price: 'PHP 1,00' },
   { name: 'Duo session (2 people)', price: 'PHP 500' },
   { name: 'Small group (3-5 people)', price: 'PHP 1,500-2,500' },
 ]

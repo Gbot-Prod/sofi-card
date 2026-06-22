@@ -9,6 +9,7 @@
 
 .pricing-header {
   display: flex;
+  flex-direction: column;
   align-items: end;
   justify-content: space-between;
   gap: 24px;
