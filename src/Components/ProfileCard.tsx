@@ -1,6 +1,10 @@
 import profileImage from '../assets/picture.jpg'
 
-function ProfileCard() {
+type ProfileCardProps = {
+  onOpenContact: () => void;
+};
+
+function ProfileCard({ onOpenContact }: ProfileCardProps) {
   return (
     <aside className="profile">
       <p className="eyebrow pb-4">Portraits / Editorial / Creative Direction</p>
@@ -15,6 +19,14 @@ function ProfileCard() {
         <p className="job-title">Freelance Photographer</p>
         <p className="address">Taguig, Metro Manila</p>
       </div>
+
+      <button
+        className="contact-button w-30 mt-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition hover:-translate-y-1"
+        onClick={onOpenContact}
+      >
+        Contact Me
+      </button>
+
       <p className="bio">
         Girlfriend of Gilbert Dolz
       </p>
